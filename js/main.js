@@ -1,23 +1,36 @@
-const calculateSalary = function (accrual) {
-  let tax = 0.35;
-  if (accrual >= 100000) {
-    tax = 0.45;
+function getRandomInteger(min, max) {
+  if (min < 0 || max < 0) {
+    throw 'Значение min и max должно быть >= 0';
+  } else if (max <= min) {
+    throw 'Значение max не может быть меньше или равным min';
   }
-  return(accrual-(accrual * tax));
-};
 
-calculateSalary(65000);
-calculateSalary(100000);
+  min = Math.ceil(min);
+  max = Math.floor(max);
 
-// console.log('«чистая» зарплата ' + calculateSalary(65000).toFixed(2) + ' рублей');
-// console.log('«чистая» зарплата ' + calculateSalary(100000).toFixed(2) + ' рублей');
+  const randomNumber = Math.random() * (max - min + 1);
+  return Math.floor(randomNumber);
+}
 
-/*
-Игорь, как бы я не хотела не позориться, но чувствую без тебя мне не справиться! время идет, а я немного не понимаю правильно ли я делаю и вообще правильно ли я понимаю
-Как я поняла, в первой домашке надо было написать пример функции, где есть условие больше/меньше, и что бы знаки были после запятой и даже можно было скачать пример из интернета
-Решила взять пример из тренажера из испытания (который сам проходишь после всего, и его я кстати прошла)
-Получается так, я объявляю переменную, которая выполняет функцию с какими либо параметрами, где указывается условие, и при разных условиях производится расчет результата и тут у меня ступор
-1.Когда я скрываю 9,10 строки и вывожу в консоль ради проверки, у меня в консоли в браузере выдает результаты, но eslint соответственно выдает ошибку
-2.Я удаляю соответственно console.log, и у меня не получается функция, если я ввожу ее в консоль в браузере, а ведь должна если я делаю правильно
-короче я уже и так почитала и так, мне кажется что я что то не допонимаю
-*/
+const randomInteger = getRandomInteger(10, 50);
+
+randomInteger();
+
+function getGeographicCoordinates(from, before) {
+  if (from < 0 || before < 0) {
+    throw 'Значение from и before должно быть >= 0';
+  } else if (before <= from) {
+    throw 'Значение before не может быть меньше или равным from';
+  }
+
+  from = Math.round(from.toFixed(1));
+  before = Math.round(before.toFixed(1));
+
+  const coordinatesX = from * Math.cos();
+  const coordinatesY = before * Math.sin();
+  return Math.random(coordinatesX.toFixed(1), coordinatesY.toFixed(1));
+}
+
+const geographicCoordinates = getGeographicCoordinates(1.1, 2.2);
+
+geographicCoordinates();
