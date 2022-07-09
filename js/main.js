@@ -17,12 +17,16 @@ function getRandomInteger(min, max) {
 
 const randomInteger = getRandomInteger(1, 30);
 
+randomInteger();
+
 //получить плавающее значение
 function getRandomFloat(min, max, signCount) {
   return Number(getRandomNumber(min, max).toFixed(signCount));
 }
 
 const randomFloat = Number(getRandomFloat(1.1, 2.2, 1));
+
+randomFloat();
 
 //возвращающая случайное целое число из переданного диапазона включительно
 function getRandomPositiveInteger (a, b) {
