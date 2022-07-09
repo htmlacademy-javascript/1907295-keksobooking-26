@@ -1,4 +1,5 @@
-function getRandomNumber (min, max) { //получить случайное число
+//получить случайное число
+function getRandomNumber (min, max) {
   if (min <= 0 || max <= 0) {
     throw 'Значение min и max должно быть >= 0';
   } else if (max <= min) {
@@ -7,7 +8,8 @@ function getRandomNumber (min, max) { //получить случайное чи
   return Math.random() * (max - min + 1) + min;
 }
 
-function getRandomInteger(min, max) { //получить случайное целое число
+//получить случайное целое число
+function getRandomInteger(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(getRandomNumber(min, max));
@@ -15,25 +17,14 @@ function getRandomInteger(min, max) { //получить случайное це
 
 const randomInteger = getRandomInteger(1, 30);
 
-randomInteger();
-
-function getRandomFloat(min, max, signCount) { //получить плавающее значение
+//получить плавающее значение
+function getRandomFloat(min, max, signCount) {
   return Number(getRandomNumber(min, max).toFixed(signCount));
 }
 
 const randomFloat = Number(getRandomFloat(1.1, 2.2, 1));
 
-randomFloat();
-
-/*
-Итак! Рассказываю! Что я планировала сделать
-Для начала я получила функции от Кекса.
-Почему то я решила, что мне надо создать 2 разных объекта (автора и описание объекта), не знаю мне показалось что так легче
-На счёт автора, немного не знаю, добавить цикл с переменной до 10 и вывести return 'img/avatars/user' + 'i' + '.png'
-На счет описания объекта, с локацией немного не поняла, тоже через цикл, но там 2 значения, или может мин мах ввести, но как то громоздко получается
-:( функция не вызывается, короче всё не то
-*/
-
+//возвращающая случайное целое число из переданного диапазона включительно
 function getRandomPositiveInteger (a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
@@ -41,8 +32,7 @@ function getRandomPositiveInteger (a, b) {
   return Math.floor(result);
 }
 
-getRandomPositiveInteger();//возвращающая случайное целое число из переданного диапазона включительно
-
+//возвращающая случайное число с плавающей точкой из переданного диапазона включительно
 function getRandomPositiveFloat (a, b, digits = 1) {
   const lower = Math.min(Math.abs(a), Math.abs(b));
   const upper = Math.max(Math.abs(a), Math.abs(b));
@@ -50,79 +40,117 @@ function getRandomPositiveFloat (a, b, digits = 1) {
   return +result.toFixed(digits);
 }
 
-getRandomPositiveFloat();//возвращающая случайное число с плавающей точкой из переданного диапазона включительно
-
-const getRandomArrayElement = function (elements) {
+function getRandomArrayElement (elements) {
   return elements[getRandomPositiveInteger(0, elements.length - 1)];
-};
+}
 
-// const author = {};
+const title = [
+  'Новостройка',
+  'Вторичная',
+  'Элитное',
+  'Апартаменты',
+  'Загородная',
+  'Аренда'
+];
 
-const offer = {
-  title: [
-    'Новостройка',
-    'Элитное',
-    'Апартаменты',
-  ],
-  // address: {
-  //   location: {
-  //     lat:
-  //     lng:
-  //   }
-  // },
-  price: getRandomInteger(),
-  type: [
-    'palace',
-    'flat',
-    'house',
-    'bungalow',
-    'hotel'
-  ],
-  rooms: getRandomInteger(1, 7),
-  guests: getRandomInteger(1, 30),
-  checkin: [
-    '12:00',
-    '13:00',
-    '14:00'
-  ],
-  checkout: [
-    '12:00',
-    '13:00',
-    '14:00'
-  ],
-  features: [
-    'wifi',
-    'dishwasher',
-    'parking',
-    'washer',
-    'elevator',
-    'conditioner'
-  ],
-  description: [
-    'Жилое помещение',
-    'Коммерческое помещение'
-  ],
-  photos: [
-    'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
-    'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-    'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
-  ]
-};
+const type = [
+  'palace',
+  'flat',
+  'house',
+  'bungalow',
+  'hotel'
+];
 
-const createAds = function() {
+const checkin = [
+  '12:00',
+  '13:00',
+  '14:00'
+];
+
+const checkout = [
+  '12:00',
+  '13:00',
+  '14:00'
+];
+
+const features = [
+  'wifi',
+  'dishwasher',
+  'parking',
+  'washer',
+  'elevator',
+  'conditioner'
+];
+
+const description = [
+  'Небольшие квартиры для молодежи с возможностью зонировать помещение',
+  'Компактные квартиры евроформата с различными функциональными пространствами',
+  'Квартиры с большой кухней-гостиной и двумя санузлами',
+  'Квартиры с отделкой Nord Line в двух цветовых вариантах – White и Silver',
+  'Тихие закрытые внутренние дворы выполнены в пейзажном стиле',
+  'Красота и функциональность – главные архитектурные принципы проекта'
+];
+
+const photos = [
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
+];
+
+const LAT_START = 35.6500;
+const LAT_END = 35.7000;
+const LNG_START = 139.7000;
+const LNG_END = 139.8000;
+const MIN_PRICE = 1000000;
+const MAX_PRICE = 15000000;
+
+function getAvatarPath(id) {
+  let pictureNumber = '';
+  if (id < 10) {
+    pictureNumber = `0${id.toString()}`;
+  } else {
+    pictureNumber = id.toString();
+  }
+  return `img/avatars/user${pictureNumber}.png`;
+}
+
+function makeOffer(id) {
+  const lat = getRandomPositiveFloat(LAT_START, LAT_END, 4);
+  const lng = getRandomPositiveFloat(LNG_START, LNG_END, 4);
+
   return {
-    title: getRandomArrayElement(offer.title),
-    address: '',
-    price: '',
-    type: getRandomArrayElement(offer.type),
-    rooms: '',
-    guests: '',
-    checkin: getRandomArrayElement(offer.checkin),
-    checkout: getRandomArrayElement(offer.checkout),
-    features: getRandomArrayElement(offer.features),
-    description: offer.title[getRandomPositiveInteger(0, offer.title.length - 1)],
-    photos: ''
+    author: {
+      avatar: getAvatarPath(id)
+    },
+    offer: {
+      title: getRandomArrayElement(title),
+      address: `${lat}, ${lng}`,
+      price: getRandomInteger(MIN_PRICE, MAX_PRICE),
+      type: getRandomArrayElement(type),
+      rooms: getRandomInteger(1, 10),
+      guests: getRandomInteger(1, 5),
+      checkin: getRandomArrayElement(checkin),
+      checkout: getRandomArrayElement(checkout),
+      features: features.slice(getRandomPositiveInteger(0, features.length - 1), getRandomPositiveInteger(1, features.length - 1)),
+      description: getRandomArrayElement(description),
+      photos: photos.slice(getRandomPositiveInteger(0, photos.length - 1), getRandomPositiveInteger(1, photos.length - 1)),
+    },
+    location: {
+      lat,
+      lng
+    }
   };
-};
+}
 
-createAds();
+function createAds(count) {
+  const Ads = [];
+
+  for (let i = 1; i <= count; i++) {
+    const newAds = makeOffer(i);
+    Ads.push(newAds);
+  }
+
+  return Ads;
+}
+
+createAds(10);
