@@ -135,9 +135,9 @@ function makeOffer(id) {
       guests: getRandomInteger(1, 5),
       checkin: getRandomArrayElement(checkin),
       checkout: getRandomArrayElement(checkout),
-      features: features.slice(getRandomPositiveInteger(0, features.length - 1), getRandomPositiveInteger(1, features.length - 1)),
+      features: features.slice(getRandomPositiveInteger(0, features.length - 1)),
       description: getRandomArrayElement(description),
-      photos: photos.slice(getRandomPositiveInteger(0, photos.length - 1), getRandomPositiveInteger(1, photos.length - 1)),
+      photos: photos.slice(getRandomPositiveInteger(0, photos.length - 1)),
     },
     location: {
       lat,
