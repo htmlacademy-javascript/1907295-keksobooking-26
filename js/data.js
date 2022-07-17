@@ -102,4 +102,4 @@ function createOffers(count) {
   return offers;
 }
 
-createOffers(10);
+export {createOffers};
