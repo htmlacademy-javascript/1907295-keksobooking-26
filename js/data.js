@@ -60,6 +60,8 @@ const LNG_END = 139.8000;
 const MIN_PRICE = 100;
 const MAX_PRICE = 1000;
 
+const DEFAULT_OFFERS_COUNT = 10;
+
 function getAvatarPath(id) {
   return `img/avatars/user${id.toString().padStart(2, '0')}.png`;
 }
@@ -102,4 +104,4 @@ function createOffers(count) {
   return offers;
 }
 
-export {createOffers};
+export {createOffers, DEFAULT_OFFERS_COUNT};
