@@ -8,4 +8,4 @@ const cardElement = getCardElement(getRandomArrayElement(offers));
 const mapElement = document.querySelector('.map__canvas');
 
 mapElement.appendChild(cardElement);
-setActiveAdForm();
+// setActiveAdForm();

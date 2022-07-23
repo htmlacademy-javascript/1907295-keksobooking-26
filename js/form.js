@@ -1,4 +1,3 @@
-//1 вариант
 function setActiveAdForm(active) {
   const adFormElement = document.querySelector('.ad-form');
   const mapFormElement = document.querySelector('.map__filters');
