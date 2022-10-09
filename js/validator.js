@@ -116,10 +116,7 @@ checkoutElement.addEventListener('change', getСheckinChange);
 adFormElement.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const isValid  = pristine.validate();
-
-  if (!isValid) {
-    submitButton.disabled = true;
-  } else {
-    submitButton.disabled = false;
-  }
+  submitButton.disabled = !isValid;
 });
+
+export {typesToPrices, onTypeChange, typeElement, priceElement};
