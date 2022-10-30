@@ -23,11 +23,11 @@ noUiSlider.create(sliderElement, {
   },
 });
 
-sliderElement.noUiSlider.on('update', function () {
+sliderElement.noUiSlider.on('update', () => {
   priceElement.value = sliderElement.noUiSlider.get();
 });
 
-typeElement.addEventListener('change', function () {
+typeElement.addEventListener('change', () => {
   sliderElement.noUiSlider.updateOptions({
     range: {
       min: MIN_PRICE,
