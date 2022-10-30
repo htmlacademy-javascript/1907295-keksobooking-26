@@ -1,8 +1,8 @@
 import {getCardElement} from './card.js';
 import {setActiveAdForm} from './form.js';
 
-const COORDINATE_LAT = 35.68950;
-const COORDINATE_LNG = 139.69171;
+export const COORDINATE_LAT = 35.68950;
+export const COORDINATE_LNG = 139.69171;
 const ZOOM = 13;
 
 const pinIcon = L.icon({
