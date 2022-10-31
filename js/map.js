@@ -1,8 +1,6 @@
 import {getCardElement} from './card.js';
 import {setActiveAdForm} from './form.js';
 
-const COORDINATE_LAT = 35.68950;
-const COORDINATE_LNG = 139.69171;
 const ZOOM = 13;
 
 const pinIcon = L.icon({
@@ -38,12 +36,12 @@ export function setMarkers(offers, markerGroup) {
 }
 
 // Отображение карты
-export function init(mapElement, addressElement) {
+export function init(mapElement, addressElement, coordinates) {
   const map = L.map(mapElement)
     .on('load', () => {
       setActiveAdForm(true);
     })
-    .setView({ lat: COORDINATE_LAT, lng: COORDINATE_LNG }, ZOOM);
+    .setView(coordinates, ZOOM);
 
   L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -53,8 +51,7 @@ export function init(mapElement, addressElement) {
   ).addTo(map);
 
   const mainPinMarker = L.marker(
-    { lat: COORDINATE_LAT, lng: COORDINATE_LNG },
-    { draggable: true, icon: mainPinIcon, },
+    coordinates, { draggable: true, icon: mainPinIcon, },
   );
 
   const markerGroup = L.layerGroup().addTo(map);
