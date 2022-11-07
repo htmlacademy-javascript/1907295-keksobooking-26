@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-expressions */
 //возвращающая случайное целое число из переданного диапазона включительно
-function getRandomPositiveInteger (a, b) {
+export function getRandomPositiveInteger (a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
   const result = Math.random() * (upper - lower + 1) + lower;
@@ -7,15 +8,17 @@ function getRandomPositiveInteger (a, b) {
 }
 
 //возвращающая случайное число с плавающей точкой из переданного диапазона включительно
-function getRandomPositiveFloat (a, b, digits = 1) {
+export function getRandomPositiveFloat (a, b, digits = 1) {
   const lower = Math.min(Math.abs(a), Math.abs(b));
   const upper = Math.max(Math.abs(a), Math.abs(b));
   const result = Math.random() * (upper - lower) + lower;
   return +result.toFixed(digits);
 }
 
-function getRandomArrayElement (elements) {
+export function getRandomArrayElement (elements) {
   return elements[getRandomPositiveInteger(0, elements.length - 1)];
 }
 
-export {getRandomPositiveInteger, getRandomPositiveFloat, getRandomArrayElement};
+export function isEscapeKey (evt) {
+  evt.key === 'Escape';
+}

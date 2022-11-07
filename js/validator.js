@@ -12,7 +12,7 @@ const guestsToRooms = {
   3: ['3']
 };
 
-const typesToPrices = {
+export const typesToPrices = {
   bungalow: 0,
   flat: 1000,
   hotel: 3000,
@@ -65,7 +65,7 @@ function onCapacityChange() {
   pristine.validate(roomNumberElement);
 }
 
-function onTypeChange() {
+export function onTypeChange() {
   const minPrice = typesToPrices[typeElement.value];
   priceElement.placeholder = minPrice;
   priceElement.min = minPrice;
@@ -119,4 +119,4 @@ adFormElement.addEventListener('submit', (evt) => {
   submitButton.disabled = !isValid;
 });
 
-export {typesToPrices, onTypeChange, typeElement, priceElement};
+export {typeElement, priceElement};

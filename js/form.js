@@ -1,14 +1,16 @@
-function setActiveAdForm(active) {
+function turnFormOff (formElement, active) {
+  formElement.querySelectorAll('fieldset')
+    .forEach ((element) => {
+      element.disabled = !active;
+    });
+}
+
+export function setActiveAdForm(active) {
   const adFormElement = document.querySelector('.ad-form');
   const mapFormElement = document.querySelector('.map__filters');
 
-  adFormElement.querySelectorAll('fieldset').forEach((item) => {
-    item.disabled = !active;
-  });
-
-  mapFormElement.querySelectorAll('fieldset').forEach((item) => {
-    item.disabled = !active;
-  });
+  turnFormOff (adFormElement, active);
+  turnFormOff (mapFormElement, active);
 
   mapFormElement.querySelectorAll('select').forEach((item) => {
     item.disabled = !active;
@@ -22,5 +24,3 @@ function setActiveAdForm(active) {
     mapFormElement.classList.remove('map__filters--disabled');
   }
 }
-
-export {setActiveAdForm};
