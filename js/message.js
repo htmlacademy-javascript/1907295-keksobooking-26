@@ -1,4 +1,7 @@
-import {isEscapeKey} from '../js/util.js';
+import {isEscapeKey} from './util.js';
+import {adFormElement} from './validator.js';
+
+const mainElement = document.querySelector('main');
 
 const successTemplate = document.querySelector('#success')
   .content
@@ -8,29 +11,30 @@ const errorTemplate = document.querySelector('#error')
   .content
   .querySelector('.error');
 
-// Сообщение об ошибке
-export function showError (message) {
-  const errorElement = errorTemplate.cloneNode(true);
+function onEscKeydown (evt) {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeMessage();
+  }
+}
 
-  errorElement.querySelector('.error__message').textContent = message;
-  errorElement.style.zIndex = '100';
-
-  // const buttonElement = errorElement.querySelector('error__button');
+function closeMessage () {
+  adFormElement.classList.add('hidden');
+  document.removeEventListener('keydown', onEscKeydown);
 }
 
 // Сообщение об успешной отправке
-export function showSuccess (text) {
-  const successElement = successTemplate.cloneNode(true);
+export function showSuccess () {
+  const successElement = successTemplate.cloneNode(true); // создание сообщение через клонирование
+  document.addEventListener('keydown', closeMessage); // подписка на закрытие при нажатии
+  document.addEventListener('click', closeMessage); // подписка на закрытие при клике
+  mainElement.append(successElement); // вставляем в дом дерево сообщение об отправке
+}
 
-  successElement.querySelector('.success__message').textContent = text;
-  successElement.style.zIndex = '100';
-
-  const closeshowSuccess = () => {
-    successElement.classList.add('hidden');
-    document.removeEventListener('keydown', isEscapeKey);
-  };
-
-  successElement.addEventListener('click', () => {
-    closeshowSuccess();
-  });
+// Сообщение об ошибке
+export function showError () {
+  const errorElement = errorTemplate.cloneNode(true);
+  document.addEventListener('keydown', closeMessage);
+  errorElement.querySelector('.error__button').addEventListener('click', closeMessage);
+  mainElement.append(errorElement);
 }

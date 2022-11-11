@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 //возвращающая случайное целое число из переданного диапазона включительно
 export function getRandomPositiveInteger (a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
@@ -20,5 +19,5 @@ export function getRandomArrayElement (elements) {
 }
 
 export function isEscapeKey (evt) {
-  evt.key === 'Escape';
+  evt.key = 'Escape';
 }

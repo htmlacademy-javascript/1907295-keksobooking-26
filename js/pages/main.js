@@ -20,26 +20,21 @@
 import '../form.js';
 import '../validator.js';
 import '../slider.js';
+import '../message.js';
+import {START_COORDINATES} from '../map.js';
 import {init as initMap, setMarkers} from '../map.js';
 import {getData} from '../api.js';
-// import {showError, showSuccess} from '../message.js';
-
 
 const DEFAULT_OFFERS_COUNT = 10;
-const coordinates = {
-  lat: 35.68950,
-  lng: 139.69171
-};
+// export const START_COORDINATES = {
+//   lat: 35.66023,
+//   lng: 139.73007
+// };
+
 
 const mapElement = document.querySelector('.map__canvas');
 const addressElement = document.querySelector('#address');
-const leafletMap = initMap(mapElement, addressElement, coordinates);
-
-// getData ((offers) => {
-//   setMarkers(offers.slice(0, DEFAULT_OFFERS_COUNT), leafletMap);
-// }, (error) => {
-//   showError(error);
-// });
+const leafletMap = initMap(mapElement, addressElement, START_COORDINATES);
 
 getData ((offers) => {
   setMarkers(offers.slice(0, DEFAULT_OFFERS_COUNT), leafletMap);

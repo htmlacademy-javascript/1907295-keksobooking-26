@@ -1,3 +1,7 @@
+import {sendData} from './api.js';
+import {showSuccess,showError} from './message.js';
+// import {sliderElement} from './slider.js';
+
 const roomsToGuests = {
   1: ['1'],
   2: ['1', '2'],
@@ -12,7 +16,7 @@ const guestsToRooms = {
   3: ['3']
 };
 
-export const typesToPrices = {
+const typesToPrices = {
   bungalow: 0,
   flat: 1000,
   hotel: 3000,
@@ -29,6 +33,9 @@ const priceElement = adFormElement.querySelector('#price');
 const checkinElement = adFormElement.querySelector('#timein');
 const checkoutElement = adFormElement.querySelector('#timeout');
 const submitButton = adFormElement.querySelector('.ad-form__submit');
+// const resetButton = adFormElement.querySelector('.ad-form__reset');
+
+export const addressElement = adFormElement.querySelector('#address');
 
 const pristine = new Pristine(adFormElement, {
   classTo: 'ad-form__element',
@@ -113,10 +120,38 @@ priceElement.addEventListener('change', onPriceChange);
 checkinElement.addEventListener('change', getСheckoutChange);
 checkoutElement.addEventListener('change', getСheckinChange);
 
-adFormElement.addEventListener('submit', (evt) => {
+function blockSubmitButton () {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Сохраняю...';
+}
+
+function unblockSubmitButton () {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
+}
+
+export function resetForm () {
+  adFormElement.reset();
+  // sliderElement.noUiSlider.set(typeElement.value);
+}
+
+adFormElement.addEventListener('submit', async (evt) => {
   evt.preventDefault();
   const isValid  = pristine.validate();
+
+  if (isValid) {
+    try {
+      const offerFormElement = new FormData(evt.target);
+      blockSubmitButton();
+      await sendData(offerFormElement, showSuccess);
+      unblockSubmitButton();
+    } catch (error) {
+      return showError(error.message);
+    }
+  }
+
   submitButton.disabled = !isValid;
 });
 
-export {typeElement, priceElement};
+
+export {adFormElement, typesToPrices, typeElement, priceElement};

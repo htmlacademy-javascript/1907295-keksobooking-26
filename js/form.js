@@ -24,3 +24,4 @@ export function setActiveAdForm(active) {
     mapFormElement.classList.remove('map__filters--disabled');
   }
 }
+

@@ -1,6 +1,11 @@
 import {getCardElement} from './card.js';
 import {setActiveAdForm} from './form.js';
+// import {addressElement} from './validator.js';
 
+export const START_COORDINATES = {
+  lat: 35.66023,
+  lng: 139.73007
+};
 const ZOOM = 13;
 
 const pinIcon = L.icon({
@@ -16,6 +21,10 @@ const mainPinIcon = L.icon({
 });
 
 // Получение координат
+// function getAddress(addressElement, {lat, lng}) {
+//   addressElement.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+// }
+
 function getAddress(addressElement, {lat, lng}) {
   addressElement.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
 }

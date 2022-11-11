@@ -22,31 +22,36 @@ function getCardElement({offer, author}) {
   cardElement.querySelector('.popup__avatar').src = author.avatar;
 
   const popupDescriptionElement = cardElement.querySelector('.popup__description');
-  popupDescriptionElement.textContent = offer.description;
-  if (offer.description && offer.description.length === 0) {
-    popupDescriptionElement.classList.add('.visually-hidden');
+  if (offer.description) {
+    popupDescriptionElement.textContent = offer.description;
+  } else {
+    popupDescriptionElement.remove();
   }
 
-  const popupFeaturesElement = cardElement.querySelector('.popup__features');
-  popupFeaturesElement.innerHTML = '';
+  if (offer.features && offer.features.length) {
+    const popupFeaturesElement = cardElement.querySelector('.popup__features');
+    popupFeaturesElement.innerHTML = '';
 
-  offer.features.forEach((item) => {
-    const featureElement = document.createElement('li');
-    featureElement.classList.add('popup__feature');
-    featureElement.classList.add(`popup__feature--${item}`);
+    offer.features.forEach((item) => {
+      const featureElement = document.createElement('li');
+      featureElement.classList.add('popup__feature');
+      featureElement.classList.add(`popup__feature--${item}`);
 
-    popupFeaturesElement.appendChild(featureElement);
-  });
+      popupFeaturesElement.appendChild(featureElement);
+    });
+  }
 
-  const popupPhotosElement = cardElement.querySelector('.popup__photos');
-  popupPhotosElement.innerHTML = '';
+  if (offer.photos && offer.photos.length) {
+    const popupPhotosElement = cardElement.querySelector('.popup__photos');
+    popupPhotosElement.innerHTML = '';
 
-  offer.photos.forEach((photo) => {
-    const photoElement = cardTemplate.querySelector('.popup__photo').cloneNode(true);
-    photoElement.src = photo;
+    offer.photos.forEach((photo) => {
+      const photoElement = cardTemplate.querySelector('.popup__photo').cloneNode(true);
+      photoElement.src = photo;
 
-    popupPhotosElement.appendChild(photoElement);
-  });
+      popupPhotosElement.appendChild(photoElement);
+    });
+  }
 
   return cardElement;
 }
