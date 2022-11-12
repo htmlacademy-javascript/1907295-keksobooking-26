@@ -10,7 +10,7 @@ const cardTemplate = document.querySelector('#card')
   .content
   .querySelector('.popup');
 
-function getCardElement({offer, author}) {
+export function getCardElement({offer, author}) {
   const cardElement = cardTemplate.cloneNode(true);
 
   cardElement.querySelector('.popup__title').textContent = offer.title;
@@ -55,5 +55,3 @@ function getCardElement({offer, author}) {
 
   return cardElement;
 }
-
-export {getCardElement};

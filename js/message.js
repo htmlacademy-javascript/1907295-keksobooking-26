@@ -1,5 +1,4 @@
 import {isEscapeKey} from './util.js';
-import {adFormElement} from './validator.js';
 
 const mainElement = document.querySelector('main');
 
@@ -18,23 +17,30 @@ function onEscKeydown (evt) {
   }
 }
 
+function onOverlayClick() {
+  closeMessage();
+}
+
 function closeMessage () {
-  adFormElement.classList.add('hidden');
+  const messageElement =
+    document.querySelector('.success') || document.querySelector('.error');
+  messageElement.remove();
   document.removeEventListener('keydown', onEscKeydown);
+  document.removeEventListener('click', onOverlayClick);
 }
 
 // Сообщение об успешной отправке
 export function showSuccess () {
   const successElement = successTemplate.cloneNode(true); // создание сообщение через клонирование
-  document.addEventListener('keydown', closeMessage); // подписка на закрытие при нажатии
-  document.addEventListener('click', closeMessage); // подписка на закрытие при клике
+  document.addEventListener('keydown', onEscKeydown); // подписка на закрытие при нажатии
+  document.addEventListener('click', onOverlayClick); // подписка на закрытие при клике
   mainElement.append(successElement); // вставляем в дом дерево сообщение об отправке
 }
 
 // Сообщение об ошибке
 export function showError () {
   const errorElement = errorTemplate.cloneNode(true);
-  document.addEventListener('keydown', closeMessage);
-  errorElement.querySelector('.error__button').addEventListener('click', closeMessage);
+  document.addEventListener('keydown', onEscKeydown);
+  errorElement.querySelector('.error__button').addEventListener('click', onOverlayClick);
   mainElement.append(errorElement);
 }
