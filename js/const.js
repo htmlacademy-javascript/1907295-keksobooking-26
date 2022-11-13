@@ -3,6 +3,12 @@ export const START_COORDINATES = {
   lng: 139.73007
 };
 
+export const MIN_PRICE = 0;
+
+export const MAX_PRICE = 100000;
+
+export const PRICE_STEP = 1000;
+
 export const DEFAULT_OFFERS_COUNT = 10;
 
 export const ZOOM = 13;

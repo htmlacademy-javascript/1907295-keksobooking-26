@@ -17,6 +17,7 @@ const mainPinIcon = L.icon({
 // Получение координат
 function getAddress(addressElement, {lat, lng}) {
   addressElement.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+  // addressElement.disabled = true;
 }
 
 // Добавление марки и балуна

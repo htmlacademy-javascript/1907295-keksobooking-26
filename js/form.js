@@ -1,3 +1,12 @@
+import {pristine} from './validator.js';
+import {postOffer} from './api.js';
+import {showSuccess,showError} from './message.js';
+
+const adFormElement = document.querySelector('.ad-form');
+const mapFormElement = document.querySelector('.map__filters');
+const submitButton = adFormElement.querySelector('.ad-form__submit');
+
+// Активация формы
 function turnFormOff (formElement, active) {
   formElement.querySelectorAll('fieldset')
     .forEach ((element) => {
@@ -6,9 +15,6 @@ function turnFormOff (formElement, active) {
 }
 
 export function setActiveAdForm(active) {
-  const adFormElement = document.querySelector('.ad-form');
-  const mapFormElement = document.querySelector('.map__filters');
-
   turnFormOff (adFormElement, active);
   turnFormOff (mapFormElement, active);
 
@@ -25,3 +31,35 @@ export function setActiveAdForm(active) {
   }
 }
 
+// Отправка данных на сервер
+function blockSubmitButton () {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Сохраняю...';
+}
+
+function unblockSubmitButton () {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
+}
+
+adFormElement.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+
+  const isValid  = pristine.validate();
+
+  if (!isValid) {
+    return;
+  }
+
+  const formData = new FormData(evt.target);
+  blockSubmitButton();
+
+  try {
+    await postOffer(formData);
+    showSuccess();
+  } catch (error) {
+    showError(error.message);
+  }
+
+  unblockSubmitButton();
+});

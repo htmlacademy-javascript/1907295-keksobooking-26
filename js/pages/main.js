@@ -15,6 +15,9 @@ import '../form.js';
 import '../validator.js';
 import '../slider.js';
 import '../message.js';
+import '../preview.js';
+import '../filter.js';
+
 
 const mapElement = document.querySelector('.map__canvas');
 const addressElement = document.querySelector('#address');
