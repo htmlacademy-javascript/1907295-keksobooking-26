@@ -1,9 +1,17 @@
-import {typesToPrices, typeElement, priceElement} from './validator.js';
+import {
+  typesToPrices,
+  typeElement,
+  priceElement
+} from './validator.js';
+
+import {
+  MIN_PRICE,
+  MAX_PRICE,
+  PRICE_STEP
+} from './const.js';
+
 
 const sliderElement = document.querySelector('.ad-form__slider');
-const MIN_PRICE = 0;
-const MAX_PRICE = 100000;
-const PRICE_STEP = 1000;
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -23,11 +31,11 @@ noUiSlider.create(sliderElement, {
   },
 });
 
-sliderElement.noUiSlider.on('update', function () {
+sliderElement.noUiSlider.on('update', () => {
   priceElement.value = sliderElement.noUiSlider.get();
 });
 
-typeElement.addEventListener('change', function () {
+typeElement.addEventListener('change', () => {
   sliderElement.noUiSlider.updateOptions({
     range: {
       min: MIN_PRICE,

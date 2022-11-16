@@ -28,9 +28,8 @@ const typeElement = adFormElement.querySelector('#type');
 const priceElement = adFormElement.querySelector('#price');
 const checkinElement = adFormElement.querySelector('#timein');
 const checkoutElement = adFormElement.querySelector('#timeout');
-const submitButton = adFormElement.querySelector('.ad-form__submit');
 
-const pristine = new Pristine(adFormElement, {
+export const pristine = new Pristine(adFormElement, {
   classTo: 'ad-form__element',
   errorClass: 'ad-form__element--invalid',
   errorTextParent: 'ad-form__element',
@@ -113,10 +112,4 @@ priceElement.addEventListener('change', onPriceChange);
 checkinElement.addEventListener('change', getСheckoutChange);
 checkoutElement.addEventListener('change', getСheckinChange);
 
-adFormElement.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const isValid  = pristine.validate();
-  submitButton.disabled = !isValid;
-});
-
-export {typesToPrices, onTypeChange, typeElement, priceElement};
+export {typesToPrices, typeElement, priceElement};
