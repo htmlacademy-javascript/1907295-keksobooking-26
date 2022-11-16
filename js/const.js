@@ -14,3 +14,5 @@ export const DEFAULT_OFFERS_COUNT = 10;
 export const ZOOM = 13;
 
 export const ALERT_SHOW_TIME = 5000;
+
+export const RERENDER_DELAY = 500;
